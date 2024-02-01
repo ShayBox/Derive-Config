@@ -5,9 +5,15 @@ edition.workspace = true
 
 [dependencies]
 derive.workspace = true
-dirs.workspace = true
-eyre.workspace = true
-toml.workspace = true
+dirs = { workspace = true, optional = true }
+eyre = { workspace = true, optional = true }
+json = { workspace = true, optional = true }
+toml = { workspace = true, optional = true }
+
+[features]
+default = ["dep:dirs", "dep:eyre"]
+json = ["derive/json", "dep:json"]
+toml = ["derive/toml", "dep:toml"]
 
 [lints.clippy]
 pedantic = "warn"

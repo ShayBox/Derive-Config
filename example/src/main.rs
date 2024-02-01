@@ -1,5 +1,4 @@
-use config::ConfigFile;
-use eyre::Result;
+use config::{eyre::Result, ConfigFile};
 use serde::{Deserialize, Serialize};
 
 #[derive(ConfigFile, Debug, Default, Deserialize, Serialize)]
