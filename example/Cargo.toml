@@ -1,0 +1,13 @@
+[package]
+name = "example"
+version.workspace = true
+edition.workspace = true
+
+[dependencies]
+config.workspace = true
+eyre.workspace = true
+serde = { workspace = true, features = ["derive"] }
+
+[lints.clippy]
+pedantic = "warn"
+nursery = "warn"

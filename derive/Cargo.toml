@@ -1,0 +1,15 @@
+[package]
+name = "derive"
+version.workspace = true
+edition.workspace = true
+
+[lib]
+proc-macro = true
+
+[dependencies]
+quote.workspace = true
+syn.workspace = true
+
+[lints.clippy]
+pedantic = "warn"
+nursery = "warn"
