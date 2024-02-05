@@ -5,13 +5,13 @@ edition.workspace = true
 
 [dependencies]
 derive.workspace = true
+thiserror = "1"
 dirs = { workspace = true, optional = true }
-eyre = { workspace = true, optional = true }
 json = { workspace = true, optional = true }
 toml = { workspace = true, optional = true }
 
 [features]
-default = ["dep:dirs", "dep:eyre"]
+default = ["dep:dirs"]
 json = ["derive/json", "dep:json"]
 toml = ["derive/toml", "dep:toml"]
 

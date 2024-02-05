@@ -3,13 +3,12 @@ resolver = "2"
 members = ["config", "derive", "example"]
 
 [workspace.package]
-version = "0.1.1"
+version = "0.1.2"
 edition = "2021"
 
 [workspace.dependencies]
 config = { path = "./config" }
 derive = { path = "./derive" }
 dirs = "5"
-eyre = "0.6"
 json = { version = "1", package = "serde_json" }
 toml = "0.8"

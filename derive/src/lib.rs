@@ -10,17 +10,15 @@ pub fn derive_config_json(input: TokenStream) -> TokenStream {
     #[cfg(feature = "json")]
     let expanded = quote! {
         impl ConfigFile for #name {
-            fn path() -> config::eyre::Result<std::path::PathBuf> {
-                use config::eyre::OptionExt;
-
-                let path = config::dirs::config_dir().ok_or_eyre("None")?;
+            fn path() -> Result<std::path::PathBuf, config::ConfigError> {
+                let path = config::dirs::config_dir().ok_or(config::ConfigError::None)?;
                 let name = env!("CARGO_PKG_NAME");
                 let file = format!("{name}.json");
 
                 Ok(path.join(file))
             }
 
-            fn save(&self) -> config::eyre::Result<()> {
+            fn save(&self) -> Result<(), config::ConfigError> {
                 use std::io::Write;
 
                 let path = Self::path()?;
@@ -36,7 +34,7 @@ pub fn derive_config_json(input: TokenStream) -> TokenStream {
                 Ok(())
             }
 
-            fn load() -> config::eyre::Result<Self> {
+            fn load() -> Result<Self, config::ConfigError> {
                 use std::io::{Read, Seek};
 
                 let path = Self::path()?;
@@ -55,17 +53,15 @@ pub fn derive_config_json(input: TokenStream) -> TokenStream {
     #[cfg(feature = "toml")]
     let expanded = quote! {
         impl ConfigFile for #name {
-            fn path() -> config::eyre::Result<std::path::PathBuf> {
-                use config::eyre::OptionExt;
-
-                let path = config::dirs::config_dir().ok_or_eyre("None")?;
+            fn path() -> Result<std::path::PathBuf, config::ConfigError> {
+                let path = config::dirs::config_dir().ok_or(config::ConfigError::None)?;
                 let name = env!("CARGO_PKG_NAME");
                 let file = format!("{name}.toml");
 
                 Ok(path.join(file))
             }
 
-            fn save(&self) -> config::eyre::Result<()> {
+            fn save(&self) -> Result<(), config::ConfigError> {
                 use std::io::Write;
 
                 let path = Self::path()?;
@@ -81,7 +77,7 @@ pub fn derive_config_json(input: TokenStream) -> TokenStream {
                 Ok(())
             }
 
-            fn load() -> config::eyre::Result<Self> {
+            fn load() -> Result<Self, config::ConfigError> {
                 use std::io::{Read, Seek};
 
                 let path = Self::path()?;

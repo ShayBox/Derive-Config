@@ -1,4 +1,4 @@
-use config::{eyre::Result, ConfigFile};
+use config::{ConfigError, ConfigFile};
 use serde::{Deserialize, Serialize};
 
 #[derive(ConfigFile, Debug, Default, Deserialize, Serialize)]
@@ -6,7 +6,7 @@ struct ExampleConfig {
     foo: String,
 }
 
-fn main() -> Result<()> {
+fn main() -> Result<(), ConfigError> {
     let mut config = ExampleConfig::load().unwrap_or_default();
     println!("{}", config.foo);
 
