@@ -3,6 +3,9 @@ use std::{marker::Sized, path::PathBuf};
 pub use derive::*;
 pub use dirs::{self};
 pub use eyre::{self};
+#[cfg(feature = "json")]
+pub use json::{self};
+#[cfg(feature = "toml")]
 pub use toml::{self};
 
 pub trait ConfigFile {

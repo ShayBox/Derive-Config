@@ -22,7 +22,7 @@ checksum = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
 
 [[package]]
 name = "config"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "derive",
  "dirs",
@@ -33,7 +33,7 @@ dependencies = [
 
 [[package]]
 name = "derive"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "quote",
  "syn",
@@ -68,7 +68,7 @@ checksum = "5443807d6dff69373d433ab9ef5378ad8df50ca6298caf15de6e52e24aaf54d5"
 
 [[package]]
 name = "example"
-version = "0.1.0"
+version = "0.1.1"
 dependencies = [
  "config",
  "serde",
@@ -387,9 +387,9 @@ checksum = "ed94fce61571a4006852b7389a063ab983c02eb1bb37b47f8272ce92d06d9538"
 
 [[package]]
 name = "winnow"
-version = "0.5.36"
+version = "0.5.37"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "818ce546a11a9986bc24f93d0cdf38a8a1a400f1473ea8c82e59f6e0ffab9249"
+checksum = "a7cad8365489051ae9f054164e459304af2e7e9bb407c958076c8bf4aef52da5"
 dependencies = [
  "memchr",
 ]
