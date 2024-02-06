@@ -1,24 +1,22 @@
 # Derive Config
 
-My personal configuration library
+My simple configuration library
 
 ```rust
-use derive_config::{ConfigError, ConfigFile};
+use derive_config::DeriveTomlConfig;
 use serde::{Deserialize, Serialize};
 
-#[derive(ConfigFile, Debug, Default, Deserialize, Serialize)]
+#[derive(Debug, Default, DeriveTomlConfig, Deserialize, Serialize)]
 struct ExampleConfig {
     foo: String,
 }
 
-fn main() -> Result<(), ConfigError> {
+fn main() {
     let mut config = ExampleConfig::load().unwrap_or_default();
     println!("{}", config.foo);
 
     config.foo = String::from(if config.foo == "bar" { "baz" } else { "bar" });
-    config.save()?;
+    config.save().expect("Failed to save");
     println!("{}", config.foo);
-
-    Ok(())
 }
 ```

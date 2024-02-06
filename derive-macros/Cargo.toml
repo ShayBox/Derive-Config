@@ -20,6 +20,7 @@ syn = "2"
 default = []
 json = []
 toml = []
+yaml = []
 
 [lints.clippy]
 pedantic = "warn"

@@ -2,10 +2,15 @@
 name = "example"
 version.workspace = true
 edition.workspace = true
+description.workspace = true
+readme.workspace = true
+repository.workspace = true
+license.workspace = true
+keywords.workspace = true
+categories.workspace = true
 
 [dependencies]
-# derive-config = { workspace = true, features = ["json"] }
-derive-config = { workspace = true, features = ["toml"] }
+derive-config = { workspace = true, features = ["json", "toml", "yaml"] }
 serde = { version = "1", features = ["derive"] }
 
 [lints.clippy]
