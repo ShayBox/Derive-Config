@@ -1,6 +1,6 @@
 use std::{marker::Sized, path::PathBuf};
 
-pub use derive::*;
+pub use derive_macros::*;
 pub use dirs::{self};
 #[cfg(feature = "json")]
 pub use json::{self};

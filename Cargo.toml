@@ -1,14 +1,20 @@
 [workspace]
 resolver = "2"
-members = ["config", "derive", "example"]
+members = ["derive-config", "derive-macros", "example"]
 
 [workspace.package]
-version = "0.1.2"
+version = "1.0.0"
 edition = "2021"
+description = "My personal configuration library"
+readme = "README.md"
+repository = "https://github.com/ShayBox/Derive-Config"
+license = "MIT"
+keywords = ["serde", "derive", "config"]
+categories = ["config"]
 
 [workspace.dependencies]
-config = { path = "./config" }
-derive = { path = "./derive" }
+derive-config = { version = "1", path = "./derive-config" }
+derive-macros = { version = "1", path = "./derive-macros" }
 dirs = "5"
 json = { version = "1", package = "serde_json" }
 toml = "0.8"

@@ -21,10 +21,10 @@ source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "baf1de4339761588bc0619e3cbc0120ee582ebb74b53b4efbf79117bd2da40fd"
 
 [[package]]
-name = "config"
-version = "0.1.2"
+name = "derive-config"
+version = "1.0.0"
 dependencies = [
- "derive",
+ "derive-macros",
  "dirs",
  "serde_json",
  "thiserror",
@@ -32,8 +32,8 @@ dependencies = [
 ]
 
 [[package]]
-name = "derive"
-version = "0.1.2"
+name = "derive-macros"
+version = "1.0.0"
 dependencies = [
  "quote",
  "syn",
@@ -68,9 +68,9 @@ checksum = "5443807d6dff69373d433ab9ef5378ad8df50ca6298caf15de6e52e24aaf54d5"
 
 [[package]]
 name = "example"
-version = "0.1.2"
+version = "1.0.0"
 dependencies = [
- "config",
+ "derive-config",
  "serde",
 ]
 
@@ -253,9 +253,9 @@ dependencies = [
 
 [[package]]
 name = "toml"
-version = "0.8.9"
+version = "0.8.10"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "c6a4b9e8023eb94392d3dca65d717c53abc5dad49c07cb65bb8fcd87115fa325"
+checksum = "9a9aad4a3066010876e8dcf5a8a06e70a558751117a145c6ce2b82c2e2054290"
 dependencies = [
  "serde",
  "serde_spanned",
@@ -274,9 +274,9 @@ dependencies = [
 
 [[package]]
 name = "toml_edit"
-version = "0.21.1"
+version = "0.22.4"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "6a8534fd7f78b5405e860340ad6575217ce99f38d4d5c8f2442cb5ecb50090e1"
+checksum = "0c9ffdf896f8daaabf9b66ba8e77ea1ed5ed0f72821b398aba62352e95062951"
 dependencies = [
  "indexmap",
  "serde",

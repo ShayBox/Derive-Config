@@ -1,7 +1,13 @@
 [package]
-name = "derive"
+name = "derive-macros"
 version.workspace = true
 edition.workspace = true
+description.workspace = true
+readme.workspace = true
+repository.workspace = true
+license.workspace = true
+keywords.workspace = true
+categories.workspace = true
 
 [lib]
 proc-macro = true
@@ -18,3 +24,4 @@ toml = []
 [lints.clippy]
 pedantic = "warn"
 nursery = "warn"
+cargo = "warn"

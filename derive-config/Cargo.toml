@@ -1,0 +1,27 @@
+[package]
+name = "derive-config"
+version.workspace = true
+edition.workspace = true
+description.workspace = true
+readme.workspace = true
+repository.workspace = true
+license.workspace = true
+keywords.workspace = true
+categories.workspace = true
+
+[dependencies]
+derive-macros.workspace = true
+dirs = { workspace = true, optional = true }
+json = { workspace = true, optional = true }
+toml = { workspace = true, optional = true }
+thiserror = "1"
+
+[features]
+default = ["dep:dirs"]
+json = ["derive-macros/json", "dep:json"]
+toml = ["derive-macros/toml", "dep:toml"]
+
+[lints.clippy]
+pedantic = "warn"
+nursery = "warn"
+cargo = "warn"
