@@ -3,6 +3,7 @@
 use std::{marker::Sized, path::PathBuf};
 
 pub use derive_macros::*;
+#[cfg(feature = "dirs")]
 pub use dirs::{self};
 use duplicate::duplicate_item;
 #[cfg(feature = "json")]

@@ -18,6 +18,7 @@ syn = "2"
 
 [features]
 default = []
+dirs = []
 json = []
 toml = []
 yaml = []
