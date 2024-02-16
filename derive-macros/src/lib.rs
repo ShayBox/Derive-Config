@@ -52,9 +52,12 @@ pub fn derive_json_config(input: TokenStream) -> TokenStream {
         }
     } else {
         quote! {
+            const CARGO_CRATE_NAME: &str = env!("CARGO_CRATE_NAME");
+
             impl DeriveJsonConfig for #name {
                 fn path() -> Result<std::path::PathBuf, derive_config::ConfigError> {
                     let mut path = std::env::current_exe()?;
+                    path.set_file_name(CARGO_CRATE_NAME);
                     path.set_extension("json");
 
                     Ok(path)
@@ -146,9 +149,12 @@ pub fn derive_toml_config(input: TokenStream) -> TokenStream {
         }
     } else {
         quote! {
+            const CARGO_CRATE_NAME: &str = env!("CARGO_CRATE_NAME");
+
             impl DeriveTomlConfig for #name {
                 fn path() -> Result<std::path::PathBuf, derive_config::ConfigError> {
                     let mut path = std::env::current_exe()?;
+                    path.set_file_name(CARGO_CRATE_NAME);
                     path.set_extension("toml");
 
                     Ok(path)

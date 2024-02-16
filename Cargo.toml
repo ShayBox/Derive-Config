@@ -3,7 +3,7 @@ resolver = "2"
 members = ["derive-config", "derive-macros", "example"]
 
 [workspace.package]
-version = "2.1.0"
+version = "2.1.1"
 edition = "2021"
 description = "My personal configuration library"
 readme = "README.md"
