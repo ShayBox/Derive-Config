@@ -11,7 +11,7 @@ categories.workspace = true
 
 [dependencies]
 derive-macros.workspace = true
-duplicate = "1"
+duplicate = "2"
 thiserror = "1"
 dirs = { workspace = true, optional = true }
 json = { workspace = true, optional = true }
@@ -19,7 +19,6 @@ toml = { workspace = true, optional = true }
 yaml = { workspace = true, optional = true }
 
 [features]
-default = ["dirs"]
 dirs = ["derive-macros/dirs", "dep:dirs"]
 json = ["derive-macros/json", "dep:json"]
 toml = ["derive-macros/toml", "dep:toml"]
