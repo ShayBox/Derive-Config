@@ -60,6 +60,11 @@ fn generate_impl(
                 Ok(())
             }
 
+            fn and_save(self) -> Result<Self, derive_config::ConfigError> {
+                self.save()?;
+                Ok(self)
+            }
+
             fn load() -> Result<Self, derive_config::ConfigError> {
                 use std::io::{Read, Seek};
 

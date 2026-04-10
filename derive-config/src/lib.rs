@@ -47,14 +47,21 @@ pub enum ConfigError {
 )]
 pub trait language_struct_name {
     /// # Errors
-    ///
-    /// Will return `Err` if `dirs::config_dir` returns err.
+    /// Will return `Err` if `dirs::config_dir` fails.
     fn path() -> Result<PathBuf, ConfigError>;
 
     /// # Errors
+    /// Will return `Err` if `Self::path`, `File::open`, `format::to_string`, or `File::write_all` fails.
     fn save(&self) -> Result<(), ConfigError>;
 
     /// # Errors
+    /// Will return `Err` if `Self::path`, `File::open`, `format::to_string`, or `File::write_all` fails.
+    fn and_save(self) -> Result<Self, ConfigError>
+    where
+        Self: Sized;
+
+    /// # Errors
+    /// Will return `Err` if `Self::path`, `File::open`, `File::read_to_string`, `File::rewind`, or `format::from_str` fails.
     fn load() -> Result<Self, ConfigError>
     where
         Self: Sized;
