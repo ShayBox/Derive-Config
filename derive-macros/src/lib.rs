@@ -20,7 +20,7 @@ fn generate_impl(
 
     let path_method = if cfg!(feature = "dirs") {
         quote! {
-            fn path() -> Result<std::path::PathBuf, derive_config::ConfigError> {
+            fn path() -> std::result::Result<std::path::PathBuf, derive_config::ConfigError> {
                 let path = derive_config::dirs::config_dir().ok_or(derive_config::ConfigError::None)?;
                 let name = env!("CARGO_PKG_NAME");
                 let file = format!("{}.{}", name, #ext_name);
@@ -30,7 +30,7 @@ fn generate_impl(
         }
     } else {
         quote! {
-            fn path() -> Result<std::path::PathBuf, derive_config::ConfigError> {
+            fn path() -> std::result::Result<std::path::PathBuf, derive_config::ConfigError> {
                 let mut path = std::env::current_exe()?;
                 path.set_file_name(env!("CARGO_CRATE_NAME"));
                 path.set_extension(#ext_name);
@@ -44,7 +44,7 @@ fn generate_impl(
         impl #trait_ident for #struct_name {
             #path_method
 
-            fn save(&self) -> Result<(), derive_config::ConfigError> {
+            fn save(&self) -> std::result::Result<(), derive_config::ConfigError> {
                 use std::io::Write;
 
                 let path = Self::path()?;
@@ -60,12 +60,12 @@ fn generate_impl(
                 Ok(())
             }
 
-            fn and_save(self) -> Result<Self, derive_config::ConfigError> {
+            fn and_save(self) -> std::result::Result<Self, derive_config::ConfigError> {
                 self.save()?;
                 Ok(self)
             }
 
-            fn load() -> Result<Self, derive_config::ConfigError> {
+            fn load() -> std::result::Result<Self, derive_config::ConfigError> {
                 use std::io::{Read, Seek};
 
                 let path = Self::path()?;
