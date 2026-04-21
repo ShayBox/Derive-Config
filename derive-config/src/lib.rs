@@ -3,43 +3,49 @@
 use std::{marker::Sized, path::PathBuf};
 
 pub use derive_macros::*;
+#[cfg(feature = "directories")]
+pub use directories::{self};
 #[cfg(feature = "dirs")]
 pub use dirs::{self};
-use duplicate::duplicate_item;
+#[cfg(feature = "etcetera")]
+pub use etcetera::{self};
 #[cfg(feature = "json")]
 pub use json::{self};
-use thiserror::Error;
 #[cfg(feature = "toml")]
 pub use toml::{self};
 #[cfg(feature = "yaml")]
 pub use yaml::{self};
 
-#[derive(Debug, Error)]
+#[derive(Debug, thiserror::Error)]
 pub enum ConfigError {
     #[error("None")]
     None,
 
-    #[error("{0}")]
+    #[cfg(feature = "etcetera")]
+    #[error(transparent)]
+    HomeDir(#[from] etcetera::HomeDirError),
+
+    #[error(transparent)]
     Io(#[from] std::io::Error),
 
     #[cfg(feature = "json")]
-    #[error("{0}")]
+    #[error(transparent)]
     Json(#[from] json::Error),
 
     #[cfg(feature = "toml")]
-    #[error("{0}")]
+    #[error(transparent)]
     TomlDe(#[from] toml::de::Error),
 
     #[cfg(feature = "toml")]
-    #[error("{0}")]
+    #[error(transparent)]
     TomlSer(#[from] toml::ser::Error),
 
     #[cfg(feature = "yaml")]
-    #[error("{0}")]
+    #[error(transparent)]
     Yaml(#[from] yaml::Error),
 }
 
-#[duplicate_item(
+#[duplicate::duplicate_item(
     language_struct_name;
     [ DeriveJsonConfig ];
     [ DeriveTomlConfig ];

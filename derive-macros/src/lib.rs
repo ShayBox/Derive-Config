@@ -18,10 +18,33 @@ fn generate_impl(
         proc_macro2::Span::call_site(),
     );
 
-    let path_method = if cfg!(feature = "dirs") {
+    let path_method = if cfg!(feature = "directories") {
+        quote! {
+            fn path() -> std::result::Result<std::path::PathBuf, derive_config::ConfigError> {
+                let base_dirs = derive_config::directories::BaseDirs::new().ok_or(derive_config::ConfigError::None)?;
+                let path = base_dirs.config_dir();
+                let name = env!("CARGO_PKG_NAME");
+                let file = format!("{}.{}", name, #ext_name);
+
+                Ok(path.join(file))
+            }
+        }
+    } else if cfg!(feature = "dirs") {
         quote! {
             fn path() -> std::result::Result<std::path::PathBuf, derive_config::ConfigError> {
                 let path = derive_config::dirs::config_dir().ok_or(derive_config::ConfigError::None)?;
+                let name = env!("CARGO_PKG_NAME");
+                let file = format!("{}.{}", name, #ext_name);
+
+                Ok(path.join(file))
+            }
+        }
+    } else if cfg!(feature = "etcetera") {
+        quote! {
+            fn path() -> std::result::Result<std::path::PathBuf, derive_config::ConfigError> {
+                use derive_config::etcetera::BaseStrategy;
+                let strategy = derive_config::etcetera::choose_base_strategy()?;
+                let path = strategy.config_dir();
                 let name = env!("CARGO_PKG_NAME");
                 let file = format!("{}.{}", name, #ext_name);
 

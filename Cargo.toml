@@ -3,7 +3,7 @@ resolver = "2"
 members = ["derive-config", "derive-macros", "example"]
 
 [workspace.package]
-version = "2.4.1"
+version = "2.4.2"
 edition = "2021"
 description = "My personal configuration library"
 readme = "README.md"
@@ -15,7 +15,11 @@ categories = ["config"]
 [workspace.dependencies]
 derive-config = { version = "2", path = "./derive-config" }
 derive-macros = { version = "2", path = "./derive-macros" }
+
 dirs = "6"
+directories = "6"
+etcetera = "0.11"
+
 json = { version = "1", package = "serde_json" }
-toml = "1"
+toml = { version = "1" }
 yaml = { version = "0.9", package = "serde_yaml" }

@@ -19,7 +19,11 @@ syn = "2"
 
 [features]
 default = []
+
+directories = []
 dirs = []
+etcetera = []
+
 json = []
 toml = []
 yaml = []
